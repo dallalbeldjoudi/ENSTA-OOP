@@ -1,4 +1,5 @@
-public class Vehicle {
+// Vehicle.java
+public abstract class Vehicle {
     private String brand;
     private int year;
     private int speed;
@@ -11,7 +12,15 @@ public class Vehicle {
         this.stateOfBrakes = stateOfBrakes;
     }
 
-    // Getters and Setters using standard camelCase
+    // Abstract method: forces Bus and Truck to define their own saveEnergy behavior
+    public abstract void saveEnergy();
+
+    public int accelerate(int increment) {
+        this.speed += increment;
+        return this.speed;
+    }
+
+    // Getters and Setters
     public String getBrand() {
         return brand;
     }
@@ -42,10 +51,5 @@ public class Vehicle {
 
     public void setStateOfBrakes(String stateOfBrakes) {
         this.stateOfBrakes = stateOfBrakes;
-    }
-
-    public int accelerate(int increment) {
-        this.speed += increment;
-        return this.speed;
     }
 }

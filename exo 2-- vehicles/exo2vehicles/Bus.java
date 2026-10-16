@@ -1,27 +1,23 @@
 public class Bus extends Vehicle {
     private int numberOfPassengers;
 
-    public Bus(String brand, int speed, int year, String stateOfBrakes) {
+    public Bus(String brand, int year, int speed, String stateOfBrakes, int numberOfPassengers) {
         super(brand, year, speed, stateOfBrakes);
-    }
-
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
-    }
-
-    public void setNumberOfPassengers(int numberOfPassengers) {
         this.numberOfPassengers = numberOfPassengers;
     }
 
-    public void saveEnergy(String stateOfBrakes) {
-        System.out.println("We are saving energy, the state of brakes must be distant!");
-        String currentBrakes = getStateOfBrakes();
-
-        if ("distant".equals(currentBrakes)) {
-            System.out.println("Good, the brakes are already set!");
+    // Decides how to save energy using its own characteristics (Req 3)
+    @Override
+    public void saveEnergy() {
+        System.out.println("Bus transporting " + numberOfPassengers + " passengers is saving energy!");
+        if ("distant".equals(getStateOfBrakes())) {
+            System.out.println("Brakes are already set to distant.");
         } else {
             setStateOfBrakes("distant");
-            System.out.println("Brakes are set to distant.");
+            System.out.println("Brakes set to distant for regenerative braking.");
         }
     }
+
+    public int getNumberOfPassengers() { return numberOfPassengers; }
+    public void setNumberOfPassengers(int numberOfPassengers) { this.numberOfPassengers = numberOfPassengers; }
 }

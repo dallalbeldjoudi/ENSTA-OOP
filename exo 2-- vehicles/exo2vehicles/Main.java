@@ -1,23 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Instantiate a Bus
-        Bus cityBus = new Bus("Volvo", 50, 2022, "close");
-        cityBus.setNumberOfPassengers(40);
+        // Create a polymorphic list that holds Vehicle objects
+        List<Vehicle> fleet = new ArrayList<>();
 
-        System.out.println("--- Bus Operations ---");
-        System.out.println("Brand: " + cityBus.getBrand() + " | Passengers: " + cityBus.getNumberOfPassengers());
-        cityBus.saveEnergy(cityBus.getStateOfBrakes());
+        // Add specific subclass instances to the generic Vehicle list
+        fleet.add(new Bus("Volvo", 2022, 50, "close", 40));
+        fleet.add(new Truck("Volvo", 2021, 80, "good", 15000));
 
+        System.out.println("=== Transport Company Vehicle ===");
         System.out.println();
 
-        // Instantiate a Truck
-        Truck cargoTruck = new Truck("Volvo", 80, 2021, "good", 15000);
-
-        System.out.println("--- Truck Operations ---");
-        System.out.println("Brand: " + cargoTruck.getBrand() + " | Load Weight: " + cargoTruck.getWeightOfLoad() + " kg");
-        System.out.println("Original Speed: " + cargoTruck.getSpeed() + " km/h");
-
-        int newSpeed = cargoTruck.saveEnergy(cargoTruck.getSpeed());
-        System.out.println("Speed after saving energy: " + newSpeed + " km/h");
+        // Loop through all vehicles using the common Vehicle interface
+        for (Vehicle v : fleet) {
+            System.out.println("Vehicle Brand: " + v.getBrand() + " (" + v.getYear() + ")");
+            System.out.println("Initial Speed: " + v.getSpeed() + " km/h");
+            
+            // Polymorphic call: Java automatically calls the correct version 
+            // of saveEnergy() depending on whether 'v' is a Bus or a Truck!
+            v.saveEnergy();
+            
+            System.out.println("----------------------------------------");
+        }
     }
 }
