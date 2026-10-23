@@ -1,4 +1,4 @@
-// Vehicle.java
+
 public abstract class Vehicle {
     private String brand;
     private int year;
@@ -12,7 +12,7 @@ public abstract class Vehicle {
         this.stateOfBrakes = stateOfBrakes;
     }
 
-    // Abstract method: forces Bus and Truck to define their own saveEnergy behavior
+
     public abstract void saveEnergy();
 
     public int accelerate(int increment) {
@@ -20,7 +20,7 @@ public abstract class Vehicle {
         return this.speed;
     }
 
-    // Getters and Setters
+
     public String getBrand() {
         return brand;
     }
